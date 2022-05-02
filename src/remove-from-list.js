@@ -26,11 +26,15 @@ function removeKFromList(l, k) {
   //throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
   let elem = l;
-  while (elem) {
-    if (elem.value === k) {
-      elem.value = elem.next.value;
+  while (l.value === k) {
+    l = l.next;
+  }
+  while (elem.next !== null) {
+    if (elem.next.value === k) {
       elem.next = elem.next.next;
-    } else elem = elem.next;
+    } else {
+      elem = elem.next;
+    }
   }
   return l;
 }
