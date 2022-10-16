@@ -8,40 +8,37 @@ const { NotImplementedError } = require('../extensions/index.js');
 */
 class BinarySearchTree {
   constructor() {
-    this.root = null;
+    this.rootTree = null;
   }
 
   root() {
-    return this.root;
+    return this.rootTree;
   }
 
   add(data) {
-  
-    // remove line with error and write your code here
     const newNodeDate = new Node(data);
-    if (this.root === null) {
-      this.root = newNodeDate;
+    if (this.rootTree === null) {
+      this.rootTree = newNodeDate;
     } else {
-      this.addRecursive(this.root, newNodeDate);
+      this.addRecursive(this.rootTree, newNodeDate);
     }
   }
 
   has(data) {
-    
-    // remove line with error and write your code here
-    let hasNode = this.root;
-    while (hasNode !== null) {
-      if (data === hasNode.data) {
+    return searchWithin(this.rootTree, data);
+    function searchWithin(node, data) {
+      if (!node) {
+        return false;
+      }
+      if (node.data === data) {
         return true;
+      }
+      if (data < node.date) {
+        searchWithin(node.left, data);
       } else {
-        if (data > hasNode.data) {
-          hasNode = hasNode.right;
-        } else if (data < hasNode.data) {
-          hasNode = hasNode.left;
-        }
+        searchWithin(node.right, data);
       }
     }
-    return false;
   }
 
   find(data) {
